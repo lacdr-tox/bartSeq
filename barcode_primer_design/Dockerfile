@@ -22,5 +22,7 @@ RUN bash -c 'ls /barcode_primer_design/databases/{hg38,hg19,mrna,refMrna}.fa.{nh
 # add sofware to pythonpath
 ENV PYTHONPATH='$PYTHONPATH:/barcode_primer_design'
 
+EXPOSE 5000
+
 # start bartender service
 ENTRYPOINT ["python", "-m", "bartender.web_frontend"]
