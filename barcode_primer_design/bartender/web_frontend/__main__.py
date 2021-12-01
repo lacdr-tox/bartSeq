@@ -17,8 +17,8 @@ from wtforms import (
     SelectField,
     FileField,
     Field,
+    IntegerField
 )
-from wtforms.fields.html5 import IntegerField
 
 from ..helpers.primer import Amplicon, Gene
 from ..p3seq import P3Seq
