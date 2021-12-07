@@ -11,6 +11,7 @@ RUN conda install primer3 blast viennarna
 # pip install required packages for bartender/Primerselect software
 COPY requirements.txt /barcode_primer_design/
 RUN pip install -r /barcode_primer_design/requirements.txt
+RUN pip install gunicorn
 
 # now add folders of bartender software
 COPY bartender /barcode_primer_design/bartender
@@ -23,7 +24,7 @@ RUN bash -c 'ls /barcode_primer_design/databases/{hg38,hg19,mrna,refMrna}.fa.{nh
 # add sofware to pythonpath
 ENV PYTHONPATH='$PYTHONPATH:/barcode_primer_design'
 
-EXPOSE 5000
+EXPOSE 8080
 
 # start bartender service
-ENTRYPOINT ["python", "-m", "bartender.web_frontend"]
+CMD ["gunicorn", "--worker-class", "eventlet", "-w", "1","--chdir", "barcode_primer_design", "bartender.web_frontend.__main__:app", "--bind", "0.0.0.0:8080"]

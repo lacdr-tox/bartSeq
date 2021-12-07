@@ -42,6 +42,7 @@ log = getLogger(__name__)
 app = Flask(__name__)
 app.secret_key = "A0Zr98j/3yX R~XHH!jmN]LWX/,?RT"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+socketio = SocketIO(app)
 
 with (PATH_PREFIX / "config.cfg").open() as f:
     predefined_config = f.read()
@@ -254,7 +255,6 @@ if __name__ == "__main__":
     )
     args = p.parse_args()
 
-    socketio = SocketIO(app)
     if not app.debug:
         log.info(f"Server started on {args.host}:{args.port}")
     socketio.run(app, host=args.host, port=args.port)
