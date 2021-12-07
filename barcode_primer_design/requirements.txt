@@ -1,6 +1,8 @@
 flask
 flask-wtf
-flask-socketio
+Flask-SocketIO==5.1.1
+python-engineio==4.3.0
+python-socketio==5.5.0
 eventlet
 werkzeug
 biopython
