@@ -14,10 +14,11 @@ RUN pip install -r /barcode_primer_design/requirements.txt
 
 # now add folders of bartender software
 COPY bartender /barcode_primer_design/bartender
-COPY databases /barcode_primer_design/databases
+COPY databases/*.fa.ndb databases/*.fa.nhr databases/*.fa.nin databases/*.fa.nsq /barcode_primer_design/databases/
 COPY primer3_config /barcode_primer_design/primer3_config
+
 # sanity check
-RUN bash -c 'ls /barcode_primer_design/databases/{hg38,hg19,mrna,refMrna}.fa.{nhr,nin,nsq} >/dev/null 2>&1'
+RUN bash -c 'ls /barcode_primer_design/databases/{hg38,hg19,mrna,refMrna}.fa.{nhr,nin,nsq,ndb} >/dev/null 2>&1'
 
 # add sofware to pythonpath
 ENV PYTHONPATH='$PYTHONPATH:/barcode_primer_design'

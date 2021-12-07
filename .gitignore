@@ -144,3 +144,5 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# Database files
+databases/
