@@ -17,6 +17,7 @@ RUN pip install https://github.com/benoitc/gunicorn/archive/ff58e0c6da83d5520916
 COPY bartender /barcode_primer_design/bartender
 COPY databases/*.fa.ndb databases/*.fa.nhr databases/*.fa.nin databases/*.fa.nsq /barcode_primer_design/databases/
 COPY primer3_config /barcode_primer_design/primer3_config
+COPY wsgi.py /barcode_primer_design/wsgi.py
 
 # sanity check
 RUN bash -c 'ls /barcode_primer_design/databases/{hg38,hg19,mrna,refMrna}.fa.{nhr,nin,nsq,ndb} >/dev/null 2>&1'
@@ -27,4 +28,4 @@ ENV PYTHONPATH='$PYTHONPATH:/barcode_primer_design'
 EXPOSE 8080
 
 # start bartender service
-CMD ["gunicorn", "--worker-class", "eventlet", "-w", "1","--chdir", "barcode_primer_design", "bartender.web_frontend.__main__:app", "--bind", "0.0.0.0:8080"]
+CMD ["gunicorn", "--worker-class", "eventlet", "-w", "1","--chdir", "barcode_primer_design", "wsgi:app", "--bind", "0.0.0.0:8080"]

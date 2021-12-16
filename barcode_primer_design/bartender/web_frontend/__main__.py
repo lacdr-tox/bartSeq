@@ -5,11 +5,11 @@ from logging import getLogger, basicConfig
 from pathlib import Path
 from typing import Iterable
 
-from flask import Flask, Markup, render_template, make_response, url_for, abort
+from flask import Flask, Markup, render_template, make_response, url_for, abort, redirect
 from flask_socketio import SocketIO
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from werkzeug.utils import secure_filename, redirect
+from werkzeug.utils import secure_filename
 from wtforms import (
     validators,
     StringField,
