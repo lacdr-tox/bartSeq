@@ -1,3 +1,4 @@
 /databases/*.fa.gz
 /databases/*.fa
+bartseq_barcode_primer_design.tar*
 
