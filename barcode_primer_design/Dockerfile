@@ -11,7 +11,7 @@ RUN conda install primer3 blast viennarna
 # pip install required packages for bartender/Primerselect software
 COPY requirements.txt /barcode_primer_design/
 RUN pip install -r /barcode_primer_design/requirements.txt
-RUN pip install gunicorn
+RUN pip install https://github.com/benoitc/gunicorn/archive/ff58e0c6da83d5520916bc4cc109a529258d76e1.zip#egg=gunicorn==20.1.0 # until https://github.com/benoitc/gunicorn/pull/2581 is properly merged
 
 # now add folders of bartender software
 COPY bartender /barcode_primer_design/bartender
